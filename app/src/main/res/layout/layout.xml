@@ -1,86 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id= "@+id/MainActivity"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Something went wrong"
+        android:textSize="28sp"
+        android:textColor="#C85E5E"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+    <!--City Name-->
+    <TextView
+        android:id="@+id/CityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="sans-serif"
+        android:text="Manila"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <!--Temperature-->
+    <TextView
+        android:id="@+id/Temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CityName"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif"
+        android:text="60°C"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/CardHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_below="@id/Temperature">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="120dp"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
+            app:cardElevation="4dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/humidity"
+                    />
+
+                <TextView
+                    android:id="@+id/Humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="humidity: 50%"
+                    android:textSize="18dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="120dp"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
+            app:cardElevation="4dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/Wind"
+                    />
+
+                <TextView
+                    android:id="@+id/Wind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Wind: 10 km/h"
+                    android:textSize="18dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
-
+        android:layout_below="@id/CardHolder"
+        android:layout_marginTop="5dp"
+        android:padding="5dp">
+        <!--Image Condition-->
+        <ImageView
+            android:id="@+id/imgCondition"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/sun"/>
         <TextView
-            android:id="@+id/locationTextView"
+            android:id="@+id/txtCondition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fetching location..."
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:text="Sunny"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"/>
 
-        <!-- Current Weather Section -->
-        <TextView
+        <EditText
+            android:id="@+id/EditTextCity"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textSize="23sp"
+            android:hint="Enter your city: "
+            android:minHeight="48dp"
+            android:textColorHint="@color/black"
+            android:background="@drawable/edittext_bg"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/BtntChangeCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Current Weather"
+            android:text="Change city"
+            android:textColor="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/temperatureTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="25°C"
-            android:textSize="48sp" />
-
-        <TextView
-            android:id="@+id/humidityTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Humidity: 60%" />
-
-        <TextView
-            android:id="@+id/windSpeedTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wind Speed: 10 km/h" />
-
-        <TextView
-            android:id="@+id/precipitationTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Precipitation: 5%" />
-
-        <!-- Hourly Forecast Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Hourly Forecast"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Now: 25°C, 1 PM: 26°C, 2 PM: 27°C" />
-
-
-        <!-- Daily Forecast Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Daily Forecast"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Today: 28°C, Tomorrow: 29°C, Day after: 30°C" />
+            app:icon="@drawable/location"
+            app:iconTint="#FF5253"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/purple_500"
+            app:rippleColor="@color/purple_500"/>
 
     </LinearLayout>
-</ScrollView>
+
+</RelativeLayout>
